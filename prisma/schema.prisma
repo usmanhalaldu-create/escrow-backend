@@ -8,8 +8,11 @@ datasource db {
 }
 
 model Transaction {
-  id        String   @id @default(uuid())
-  amount    Float
-  status    String   @default("PENDING")
-  createdAt DateTime @default(now())
+  id          String   @id @default(uuid())
+  description String?
+  amount      Float
+  buyer       String
+  seller      String
+  status      String   @default("PENDING")
+  createdAt   DateTime @default(now())
 }

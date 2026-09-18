@@ -25,6 +25,11 @@ app.get('/api/transactions', async (req, res) => {
 
 app.post('/api/transactions', async (req, res) => {
   try {
+    const apiKey = req.headers['x-api-key'];
+    if (apiKey !== process.env.API_SECRET_KEY) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
     const { title, amount, buyer, seller, status } = req.body;
     const parsedAmount = typeof amount === 'string' ? parseFloat(amount) : amount;
 

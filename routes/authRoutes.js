@@ -55,6 +55,7 @@ router.post('/signup', async (req, res) => {
       token,
       user: {
         id: user.id,
+        userId: user.id,
         fullName: user.fullName,
         email: user.email,
         roles: user.roles,
@@ -98,6 +99,7 @@ router.post('/login', async (req, res) => {
       token,
       user: {
         id: user.id,
+        userId: user.id,
         fullName: user.fullName,
         email: user.email,
         roles: user.roles,
@@ -111,7 +113,7 @@ router.post('/login', async (req, res) => {
 });
 
 // ============================================================
-// GET /api/auth/me — Return current user
+// GET /api/auth/me — Return current user from token
 // ============================================================
 router.get('/me', requireAuth, async (req, res) => {
   try {
@@ -126,6 +128,7 @@ router.get('/me', requireAuth, async (req, res) => {
 
     res.json({
       id: user.id,
+      userId: user.id,
       fullName: user.fullName,
       email: user.email,
       roles: user.roles,
